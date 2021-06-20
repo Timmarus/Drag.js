@@ -1,0 +1,73 @@
+body {
+	background-color: #E5EBEA;
+	font-family: "Verdana ", "Lucida Grande", sans-serif;
+}
+
+h1 {
+	color: #F8E16C;
+	text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+h3 {
+	color: #F8E16C;
+	text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+.card {
+	background-color: #E5EBEA;
+	margin: auto;
+	width: 50%;
+	border: 10px dotted #45503B;
+	border-radius: 25px;
+	min-height: 100%;
+	padding: 50px;
+}
+
+.header {
+	margin-bottom: 10px;
+}
+
+
+.card pre{
+
+	background-color: #B098A4;
+	width: auto;
+	padding: 10px;
+}
+
+.card xmp{
+
+	background-color: #B098A4;
+	width: auto;
+	padding: 10px;
+}
+
+.card p {
+	color: black;
+
+}
+
+.card .header {
+	text-align: center;
+}
+
+.optionsTable {
+	background-color: #CDEDF6;
+	display: table;
+    border-spacing: 2px;
+    border-color: grey;
+    width: 100%;
+}
+
+.optionsTable tr {
+	display: table-row;
+    background-color: white;
+}

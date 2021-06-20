@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Drag.js Documentation</title>
+	<link rel="stylesheet" href="documentation.css" type="text/css">
+	<script src="jquery.js"></script>
+	<script src="drag.js"></script>
+</head>
+<body>
+<div class="card">
+<h1>Getting Started</h1>
+<p>To use the Drag.js API, the first thing to do is to add the script to your document, and then create a new Dragjs object.</p>
+
+<xmp>	<script src="drag.js"></script>
+	<script>
+	let dragjs = new Dragjs();
+	</script>
+</xmp>
+
+<p>You can also add the default styling for Drag.js by including:</p>
+<xmp>	<link rel="stylesheet" href="drag.css" type="text/css"> </xmp>
+
+<p>To create a dropzone, we'll need a parent element. Assuming that parentId is an element on the page, creating dropzones is as easy as:</p>
+<pre>
+	let options = {}
+	let newDropzone = dragjs.createDropzone(parentId, options);
+</pre>
+
+<p>Creating an item under this new dropzone is just as easy:</p>
+<pre>
+	let newItem = dragjs.createItem(newDropzone, options);
+</pre>
+
+</div>
+<br />
+<div class="card">
+	<h1>Objects</h1>
+	<p>Drag.js fundamentally creates two different types of objects: Dropzones and Items.<br /><br />
+	Dropzones serve as areas for Items to be placed in.<br /><br />
+	Dropzones and Items each have a set of options that can be applied. The following section will lay out the various options and what they do.</p>
+	<h3>- dropzoneOptions</h3>
+	<p>The dropzoneOptions object is of the following form:</p>
+	<pre>
+	{
+		grouping: this.groupId,
+		tag: 'div',
+		classes: 'dragOrigin',
+		styles: '',
+		htmlAttributes: {},
+		isItem: false,
+		snapToGrid: true,
+		itemCreator: false,
+		itemCreatorOptions: {},
+	}
+	</pre>
+
+	<h3>- itemOptions</h3>
+	<p>The itemOptions object is of the following form:</p>
+	<pre>
+	{
+		grouping: this.groupId,
+		tag: 'span',
+		classes: 'dragItem',
+		styles: '',
+		htmlAttributes: {},
+		innerHTML: '',
+		snapToGrid: true,
+	}
+	</pre>
+
+	<h1>Shared Options</h1>
+	<p>The following is a summary of the options available. For more information, scroll down to the description of the option you'd like to learn about.</p><br /><br />
+	<table class="optionsTable">
+		<tr>
+			<th>Option Name</th>
+			<th>Type</th>
+			<th>Object</th>
+			<th>Description</th>
+			<th>Default</th>
+		</tr>
+		<tr>
+			<td>grouping</td>
+			<td>string</td>
+			<td>shared</td>
+			<td>The group ID of the dropzone or item</td>
+			<td>this.groupId</td>
+		</tr>
+		<tr>
+			<td>tag</td>
+			<td>string</td>
+			<td>shared</td>
+			<td>The HTML tag of the dropzone or item</td>
+			<td>"div" or "span"</td>
+		</tr>
+		<tr>
+			<td>classes</td>
+			<td>string</td>
+			<td>shared</td>
+			<td>The class tag of the dropzone or item</td>
+			<td>"dragDropzone" or "dragItem"</td>
+		</tr>
+		<tr>
+			<td>styles</td>
+			<td>string</td>
+			<td>shared</td>
+			<td>The style tag of the dropzone or item</td>
+			<td>''</td>
+		</tr>
+		<tr>
+			<td>htmlAttributes</td>
+			<td>object</td>
+			<td>shared</td>
+			<td>The set of attributes that should be applied to the newly created item.</td>
+			<td>{}</td>
+		</tr>
+		<tr>
+			<td>snapToGrid</td>
+			<td>boolean</td>
+			<td>shared</td>
+			<td>Determines whether or not the newly created object snaps to the grid or is placed arbitrarily.</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>isItem</td>
+			<td>boolean</td>
+			<td>Dropzones</td>
+			<td>Determines whether or not the newly created dropzone(s) should also be items</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>itemCreator</td>
+			<td>boolean</td>
+			<td>Dropzones</td>
+			<td>Determines whether or not the newly created dropzone(s) should have a Creator item.</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>itemCreatorOptions</td>
+			<td>object</td>
+			<td>Dropzones</td>
+			<td>Object that specifies the options for the itemCreator. Only used when itemCreator is true.</td>
+			<td>{}</td>
+		</tr>
+		<tr>
+			<td>innerHTML</td>
+			<td>string</td>
+			<td>Items</td>
+			<td>Specifies the innerHTML of the newly created item.</td>
+			<td>''</td>
+		</tr>
+	</table>
+
+	<h3>- grouping</h3>
+	<p>The grouping option specifies the Drag.js ID that the new object is set to follow. Each item and dropzone has a grouping associated with it, and this attribute is what separates different dropzones.
+		Each object can only interact with other objects with the same grouping. For example, items can only be dropped in a dropzone if that dropzone shares the same grouping.
+	</p>
+
+	<h3>- tag</h3>
+	<p>The tag option specifies the type of object created. For most cases, this will be a <code>span</code> or <code>div</code> option for items and dropzones respecively. However, this can be customized to be whatever the developer desires.
+	</p>
+
+	<h3>- classes</h3>
+	<p>The classes options allows the developer to set which CSS classes the new element should have. This should be a single string containing all of the desired classes.</p>
+	
+
+	<h3>- styles</h3>
+	<p>Similar to the classes option, the styles option allows the developer to set custom CSS styles that the new object should have. This should be a single string containing the entirety of the desired styling.</p>
+
+	<h3>- htmlAttributes</h3>
+	<p>The htmlAttributes option serves as a pass-through for the entire HTML attribute space. Any attribute that is a key in the htmlAttributes object will be assigned it's value.
+	</p>
+	htmlAttributes should be in the following form:
+	<pre>
+	{
+		href: '/',
+		src: 'example.png',
+		alt: 'This is a test alt'
+	}
+	</pre>
+	<p>Each attribute will be applied to the new element.</p>
+
+	<h3>- snapToGrid</h3>
+	<p>The snapToGrid option is a boolean that specifies whether the newly created item(s) should snap to dropzones' grids, or if it should be placeable anywhere within the dropzone</p>
+
+	<h1>Dropzone-specific options</h1>
+	<h3>- isItem</h3>
+	<p>The isItem option is a boolean that specifies whether the newly created dropzone(s) should act as items as well. This allows for nested dropzones that can be moved like items.</p>
+
+	<h3>- itemCreator</h3>
+	<p>The itemCreator option is a boolean that specifies whether a textbox item should be created within the newly created dropzone(s). This textbox allows for users to create new objects on their own.</p>
+
+	<h3>- itemCreatorOptions</h3>
+	<p>The itemCreatorOptions option is a boolean that gets passed through to the item created when itemCreator is set to true. This allows the developer to specify certain options when the itemCreator item is created.</p>
+
+	<h1>Item-specific options</h1>
+	<h3>- innerHTML</h3>
+	<p>This is an Item attribute that specifies what the innerHTML of the newly created item should be.</p>
+
+
+</div>
+<br />
+<div class="card">
+<h1>Functions</h1>
+
+<p>The Drag.js object created with new Dragjs() contains a set of methods that facilitate object-creation in Drag.js.</p>
+
+<h3> - setGroupId(id)</h3>
+<p>By default, Drag.js generates a random grouping ID for each object. You can set the grouping ID yourself by calling dragjs.setGroupId(id).</p>
+<pre>
+	let newId = 'some id text';
+	dragjs.setGroupId(newId);
+</pre>
+
+<h3> - createDropzone(parent, dropzoneOptions)</h3>
+<p>Creates a dropzone as a child of parent and with options dropzoneOptions, and returns the new dropzone element.</p>
+<p>Set parent to null to avoid attaching the new dropzone to a parent object. </p>
+<p>createDropzone() can accept either the parent element itself, or a string representing the parent element's id.</p>
+<pre>
+	let parentId = 'someElement';
+	let options = {}
+	dragjs.createDropzone(parentId, options);
+</pre>
+
+<h3> - createItem(parent, itemOptions)</h3>
+<p>Creates a draggable item as a child of parentId with options itemOptions, and returns the new element.</p>
+<p>It is possible to create a new item without a parent by setting the value of parentId to null, but this is against best practices, as items should always be associated with some dropzone.</p>
+<p>createItem() can accept either the parent element itself, or a string representing the parent element's id.</p>
+<pre>
+	let parentId = 'someParentElement';
+	let options = {}
+	let dropzoneId = dragjs.createDropzone(parentId, options).id;
+	dragjs.createItem(dropzoneId, options);
+</pre>
+
+<h3> - multiCreateDropzones(args)</h3>
+<p>This function is a short way to create multiple dropzones using the information specified in the args.</p>
+<p>The args parameter is an object of the form:</p>
+<pre>
+	{
+		parentId1: [options1, options2, options3...],
+		parentId2: [options4, options5, options6...],
+		...
+	}
+</pre>
+
+<p>For each key, and each dropzoneOptions object in the key's array, multiCreateDropzones will create a new item, with the key serving as a parentId.</p>
+<p>The return value of this function is of the form:</p>
+<pre>
+	{
+		parentId1: [newElement1, newElement2, newElement3...],
+		parentId2: [newElement4, newElement5, newElement6...],
+		...
+	}
+</pre>
+
+
+<h3> - multiCreateItems(args)</h3>
+
+<p>This functions identically to multiCreateDropzones(args), except it takes in itemOptions and creates Items instead of Dropzones.</p>
+</div>
+</body>
+
+</html>

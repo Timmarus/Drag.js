@@ -1,0 +1,52 @@
+.dragContainer {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	border-top: 1px solid black;
+}
+
+.dragNested {
+	border: 1px solid red;
+}
+
+.dragOrigin {
+	display: flex;
+	position: relative;
+	border: 3px inset black;
+	width: 50%;
+	min-height: 200px;
+	flex-flow: row wrap;
+	padding: 10px;
+	background-color: #B098A4;
+	border-radius: 25px;
+}
+
+.dragDropzone {
+	display: flex;
+	border: 3px inset black;
+	width: 50%;
+	min-height: 200px;
+	min-width: 100px;
+	flex-flow: row wrap;
+	padding: 10px;
+	border-radius: 25px;
+	background-color: #B098A4;
+}
+
+.dragItem {
+	background-color: #45503B;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 10px;
+	height: auto;
+	align-self: flex-start;
+	width: 100%;
+	color: #F8E16C;
+	cursor: pointer;
+	overflow-wrap: break-word;
+	position: relative;
+	border-radius: 15px;
+	text-align: center;
+	border: 3px outset;
+}
